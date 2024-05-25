@@ -31,8 +31,24 @@ public class LoginUserServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           
+            String url="/login.jsp";
+           String email = request.getParameter("txtemail");
+           String password = request.getParameter("txtpassword");
+           String message = "";
+           String emailex = "tranvanduy@gmail.com";
+           String passwordex = "12345A";
+           if(email.equals(emailex) && password.equals(passwordex)) {
+              url="/index.jsp";
+           } else {
+                message = "Email does not exist or password is wrong";
+            request.setAttribute("message", message);
+            url="/login.jsp";
+           }
+           getServletContext()
+                .getRequestDispatcher(url)
+                .forward(request, response);
         }
+        
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
