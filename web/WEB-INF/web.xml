@@ -12,6 +12,14 @@
         <servlet-name>ManageUserServlet</servlet-name>
         <servlet-class>controller.ManageUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Container</servlet-name>
+        <servlet-class>controller.Container</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Main</servlet-name>
+        <servlet-class>controller.Main</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUserServlet</servlet-name>
         <url-pattern>/LoginUserServlet</url-pattern>
@@ -24,9 +32,20 @@
         <servlet-name>ManageUserServlet</servlet-name>
         <url-pattern>/ManageUserServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Container</servlet-name>
+        <url-pattern>/Container</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Main</servlet-name>
+        <url-pattern>/Main</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

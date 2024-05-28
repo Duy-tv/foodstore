@@ -31,18 +31,24 @@ public class RegisterUserServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           String url = "/register.jsp";
+           String url = "";
            String email = request.getParameter("txtemail");
            String password = request.getParameter("txtpassword");
+           String cfpassword = request.getParameter("txtrepassword");
            String message = "";
+           String message1 ="";
            String emailex = "tranvanduy@gmail.com";
            String passwordex = "12345A";
            if(email.equals(emailex)) {
                message = "Email already exists";
                request.setAttribute("message", message);
-               url = "/register.jsp";
+               url = WebPage.REGISTER;
+           }else if(!password.equals(cfpassword)) {
+               message1 = "not match with password!";
+               request.setAttribute("message1", message1);
+               url = WebPage.REGISTER;
            } else {
-               url = "/index.jsp";
+               url = WebPage.INDEX;
            
             
            }

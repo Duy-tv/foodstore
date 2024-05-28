@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Duy.Tran
  */
-public class LoginUserServlet extends HttpServlet {
+public class Main extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,24 +31,33 @@ public class LoginUserServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String url="";
-           String email = request.getParameter("txtemail");
-           String password = request.getParameter("txtpassword");
-           String message = "";
-           String emailex = "tranvanduy@gmail.com";
-           String passwordex = "12345A";
-           if(email.equals(emailex) && password.equals(passwordex)) {
-              url= WebPage.INDEX;
-           } else {
-                message = "Email does not exist or password is wrong";
-            request.setAttribute("message", message);
-            url=WebPage.LOGIN;
-           }
-           getServletContext()
+            String main = request.getParameter("action");
+            String url ="";
+            if(main == null) {
+                main = WebPage.INDEX;
+            }
+            switch(main) {
+                case WebPage.WELCOME_ACTION:
+                    url = WebPage.INDEX;
+                    break;
+                case WebPage.LOGIN_ACTION:
+                    url = WebPage.LOGIN;
+                    break;
+                case WebPage.REGISTER_ACTION:
+                    url = WebPage.REGISTER;
+                    break;
+                case WebPage.SUBMIT_LOGIN:
+                    url = "/LoginUserServlet";
+                    break;
+                case WebPage.SUBMIT_REGISTER:
+                    url ="/RegisterUserServlet";
+                    break;
+                    
+            }
+            getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
         }
-        
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
